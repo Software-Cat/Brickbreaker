@@ -22,6 +22,64 @@
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
     <script>
+        // Rect constructor
+        function Rect(x, y, w, h) {
+            this.x = x;
+            this.y = y;
+            this.w = w;
+            this.h = h;
+
+            this.top = y;
+            this.left = x;
+            this.bottom = y + h;
+            this.right = x + w;
+
+            this.topLeft = [left, top];
+            this.bottomLeft = [left, bottom];
+            this.topRight = [right, top];
+            this.bottomRight = [right, bottom];
+
+            this.centerX = x + w / 2;
+            this.centerY = y + h / 2;
+            this.center = [centerX, centerY];
+
+            this.midTop = [centerX, top];
+            this.midLeft = [left, centerY];
+            this.midBottom = [centerX, bottom];
+            this.midRight = [right, centerY]
+
+            this._update = function (x = this.x, y = this.y, w = this.w, h = this.h) {
+                this.x = x;
+                this.y = y;
+                this.w = w;
+                this.h = h;
+
+                this.top = y;
+                this.left = x;
+                this.bottom = y + h;
+                this.right = x + w;
+
+                this.topLeft = [left, top];
+                this.bottomLeft = [left, bottom];
+                this.topRight = [right, top];
+                this.bottomRight = [right, bottom];
+
+                this.centerX = x + w / 2;
+                this.centerY = y + h / 2;
+                this.center = [centerX, centerY];
+
+                this.midTop = [centerX, top];
+                this.midLeft = [left, centerY];
+                this.midBottom = [centerX, bottom];
+                this.midRight = [right, centerY]
+            }
+
+            this.move = function (x, y) {
+                newX = this.x + x
+                newY = this.y + y
+                this._update(newX, newY)
+            }
+        }
         // Get Canvas
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
