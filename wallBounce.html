@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Canvas Workshop</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+        // Get Canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+
+        // Ball Appearance
+        var ballRadius = 10;
+        // Ball Pos
+        var x = canvas.width / 2;
+        var y = canvas.height - 30;
+        // Ball Vel
+        var dx = 2;
+        var dy = -2;
+
+
+        // Draw ball
+        function draw_ball() {
+            ctx.beginPath();
+            ctx.arc(x, y, ballRadius, 0, Math.PI * 2)
+            ctx.fillStyle = "#0095DD";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Collision Detection
+        function collision() {
+            // Ball x walls
+            if (x + dy > canvas.width - ballRadius || x + dx < ballRadius) {
+                dx = -dx;
+            }
+            // Ball y walls
+            if (y + dy > canvas.height - ballRadius || y + dy < ballRadius) {
+                dy = -dy;
+            }
+        }
+
+        // Draw Loop
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            draw_ball();
+
+            collision();
+
+            // Move ball
+            x += dx;
+            y += dy;
+        }
+
+        setInterval(draw, 10);
+    </script>
+</body>
+
+</html>

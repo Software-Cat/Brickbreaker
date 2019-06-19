@@ -1,0 +1,56 @@
+<!-- Use index.html for the intro page of your website-->
+<!-- https://developer.mozilla.org/en-US/docs/Games/Tutorials/2D_Breakout_game_pure_JavaScript -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Canvas Workshop</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        canvas {
+            background: #eee;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <script>
+        // Get Canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Red Rect
+        ctx.beginPath();
+        ctx.rect(40, 40, 50, 50);
+        ctx.fillStyle = "#FF0000";
+        ctx.fill();
+        ctx.closePath();
+
+        // Green Circle 
+        ctx.beginPath();
+        ctx.arc(240, 160, 20, 0, Math.PI * 2, false);
+        ctx.fillStyle = 'green';
+        ctx.fill();
+        ctx.closePath();
+
+        // Semi-trans Green Rect stroke
+        ctx.beginPath();
+        ctx.rect(160, 10, 100, 40);
+        ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+        ctx.stroke();
+        ctx.closePath();
+    </script>
+
+</body>
+
+</html>
