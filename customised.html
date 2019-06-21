@@ -46,7 +46,7 @@
             this.midTop = [centerX, top];
             this.midLeft = [left, centerY];
             this.midBottom = [centerX, bottom];
-            this.midRight = [right, centerY]
+            this.midRight = [right, centerY];
 
             this._update = function (x = this.x, y = this.y, w = this.w, h = this.h) {
                 this.x = x;
@@ -71,19 +71,44 @@
                 this.midTop = [centerX, top];
                 this.midLeft = [left, centerY];
                 this.midBottom = [centerX, bottom];
-                this.midRight = [right, centerY]
+                this.midRight = [right, centerY];
             }
 
             this.move = function (x, y) {
-                newX = this.x + x
-                newY = this.y + y
-                this._update(newX, newY)
+                newX = this.x + x;
+                newY = this.y + y;
+                this._update(newX, newY);
+            }
+        }
+
+        // Ball Constructor
+        function Ball(x, y, r, xVel, yVel) {
+            this.radius = r
+            this.xVel = xVel
+            this.yVel = yVel
+
+            this.rect = new Rect(x, y, 2 * r, 2 * r)
+
+            this.display = function (canvasCtx) {
+                ctx.beginPath();
+                ctx.arc(this.rect.centerX, this.rect.centerY, this.radius, 0, Math.PI * 2)
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            this.collide_with = function (object) {
+                // Note: obj must have rect attribute
+                
+            }
+
+            this.animate = function () {
+                this.rect.move(this.xVel, this.yVel)
             }
         }
         // Get Canvas
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
-
 
 
         // Ball Appearance
@@ -134,7 +159,6 @@
 
         // Lives
         var lives = 3;
-
 
 
         // Listen for keys
